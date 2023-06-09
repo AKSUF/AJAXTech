@@ -1,14 +1,26 @@
-function loadData() {
-    // create a request
+function loadData(callbackF) {
+    // create a new request
     const xhr = new XMLHttpRequest();
-    //request preparation
+
+    // what to do when response arrives
     xhr.onload = function() {
-        const container = document.getElementById('demo');
-        demo.innerHTML = xhr.responseText;
+        callbackF(this);
     };
-    //prepare request-method :GET,POST,PATCH,DEETE
+
+    // prepare request - methods: GET, POST, PUT, PATCH, DELETE, OPTIONS
     xhr.open("GET", "./data/data.txt");
-    //send request
+
+
     xhr.send();
 
+}
+
+function myCallback1(xhr) {
+    const container = document.getElementById("demo");
+    container.innerHTML = xhr.responseText;
+}
+
+function myCallback2(xhr) {
+    const container = document.getElementById("demo2");
+    container.innerHTML = xhr.responseText;
 }
