@@ -4,7 +4,9 @@ function loadData(callbackF) {
 
     // what to do when response arrives
     xhr.onload = function() {
-        callbackF(this);
+        const container = document.getElementById("demo");
+        container.innerHTML = this.responseText;
+        console.log(this.getAllResponseHeaders("etag"));
     };
 
     // prepare request - methods: GET, POST, PUT, PATCH, DELETE, OPTIONS
@@ -13,14 +15,4 @@ function loadData(callbackF) {
 
     xhr.send();
 
-}
-
-function myCallback1(xhr) {
-    const container = document.getElementById("demo");
-    container.innerHTML = xhr.responseText;
-}
-
-function myCallback2(xhr) {
-    const container = document.getElementById("demo2");
-    container.innerHTML = xhr.responseText;
 }
